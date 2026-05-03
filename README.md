@@ -1,11 +1,13 @@
 ﻿<div align="center"><h1>ᓚᘏᗢ djs-transcripts</h1></div>
+
 > [!IMPORTANT]
 > This repository was forked from [aymenelouadi/discord-transcripts-v2](https://github.com/aymenelouadi/discord-transcripts-v2) and modified for the use of Purple Utilities.
+>
 ---
 This version of `djs-transcripts` is purposed for the **Purple Utilities** project. This features the latest up-to-date exporting system of **Components v2**, an enhanced version of exporting normal messages, and more advanced systems that allow you to freely choose how to export.
 
 ## Quick Start
-<h3>`createTranscript` - Generate from a live channel</h3>
+#### `createTranscript` - Generate from a live channel
 ```javascript
 import { createTranscript, ExportReturnType } from '@purple-utils/djs-transcripts';
 
@@ -21,7 +23,7 @@ const html = await createTranscript(channel, {
   poweredBy: true,
 });
 ```
-<h3>`generateFromMessages` - Generate from an array of messages</h3>
+#### `generateFromMessages` - Generate from an array of messages
 ```javascript
 import { generateFromMessages, ExportReturnType } from '@purple-utils/djs-transcripts';
 
