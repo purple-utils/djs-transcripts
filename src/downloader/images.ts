@@ -86,11 +86,11 @@ export class TranscriptImageDownloader {
 
       // if the compression options are set, compress the image
       if (this.compression) {
-        const sharp = await import('sharp');
+        const sharpModule = await import('sharp');
+        const sharp = (sharpModule && (sharpModule as any).default) || (sharpModule as any);
 
         this.log(`Compressing ${attachment.id} with 'sharp'`);
-        const sharpbuf = await sharp
-          .default(buffer)
+        const sharpbuf = await sharp(buffer)
           .webp({
             quality: this.compression.quality,
             force: this.compression.convertToWebP,
