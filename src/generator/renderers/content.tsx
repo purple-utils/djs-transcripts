@@ -270,6 +270,13 @@ export function MessageSingleASTNode({ node, context }: { node: SingleASTNode; c
         )
       );
 
+    case 'subtext':
+      return (
+        <div style={{ fontSize: '12px', color: '#949ba4', marginTop: '4px' }}>
+          <MessageASTNodes nodes={node.content} context={context} />
+        </div>
+      );
+
     default: {
       console.log(`Unknown node type: ${type}`, node);
       return typeof node.content === 'string' ? (
