@@ -34,5 +34,5 @@ const buffer = await generateFromMessages(messages, channel, {
   saveImages: false,
 });
 ```
-
+---
 Any contributions are welcomed. The only requirement is that you must specify whether AI was used within your contribution or not. Use of AI within your contribution will result in it being denied upon detection.
