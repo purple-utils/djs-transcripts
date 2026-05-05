@@ -12,6 +12,16 @@ import { TranscriptImageDownloader, type ResolveImageCallback } from './download
 export { default as DiscordMessages } from './generator/transcript';
 export { TranscriptImageDownloader } from './downloader/images';
 
+function sanitizeAttachmentFileName(name: string) {
+  return name.replace(/[<>:"/\\|?*\x00-\x1F]/g, '_').trim() || 'attachment';
+}
+
+function getAttachmentAssetPath(attachment: { id: string; filename?: string | null; name?: string | null }) {
+  const fileName = sanitizeAttachmentFileName(attachment.filename ?? attachment.name ?? attachment.id);
+  const finalName = `${attachment.id}-${fileName}`;
+  return `./attachments/${encodeURIComponent(finalName)}`;
+}
+
 // version check
 const versionPrefix = version.split('.')[0];
 
@@ -45,6 +55,8 @@ export async function generateFromMessages<T extends ExportReturnType = ExportRe
       console.warn(
         `[discord-html-transcripts] You have specified both saveImages and resolveImageSrc, please only specify one. resolveImageSrc will be used.`
       );
+    } else if (options.reuseAssets) {
+      resolveImageSrc = (attachment) => getAttachmentAssetPath(attachment);
     } else {
       resolveImageSrc = new TranscriptImageDownloader().build();
       console.log('Using default downloader');

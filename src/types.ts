@@ -29,6 +29,13 @@ export type GenerateFromMessagesOptions<T extends ExportReturnType> = Partial<{
   saveImages: boolean;
 
   /**
+   * Reuses locally saved attachment files for image sources instead of embedding base64.
+   * When enabled with saveImages, image URLs in the HTML point to ./attachments/<attachment-id>-<filename>.
+   * @default false
+   */
+  reuseAssets: boolean;
+
+  /**
    * Callbacks for resolving channels, users, and roles
    */
   callbacks: Partial<RenderMessageContext['callbacks']>;
